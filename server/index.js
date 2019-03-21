@@ -1,3 +1,5 @@
+import {ApolloServer} from "apollo-server";
+
 require("dotenv").config();
 import { GraphQLServer, PubSub } from "graphql-yoga";
 import mongoose from "mongoose";
@@ -33,11 +35,12 @@ mongoose
   .then(() => console.log("MongoDB connected"))
   .catch(err => console.log(err));
 
-const server = new GraphQLServer({
+const server = new ApolloServer({
   schema,
   context
 });
 
-server.start(options, ({ port }) => {
-  console.log(`🚀 Server is running on http://localhost:${port}`);
-});
+server.listen(options)
+  .then(({ url }) => {
+    console.log(`Server is running on ${url}`)
+  });

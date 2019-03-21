@@ -8,19 +8,19 @@ ObjectID.prototype.valueOf = function() {
   return this.toString();
 };
 
-const CommentSchema = new Schema({
-  text: {
+const TaskSchema = new Schema({
+  content: {
     type: String,
-    required: true
+    requred: true
   },
-  author: {
-    type: Schema.Types.ObjectId,
-    ref: "User"
+  description: {
+    type: String,
+    requred: false
   },
-  post: {
-    type: Schema.Types.ObjectId,
-    ref: "Post"
+  completed: {
+    type: Boolean,
+    requred: false
   }
 });
 
-export default mongoose.model("Comment", CommentSchema);
+export default mongoose.model("Task", TaskSchema);
