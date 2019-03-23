@@ -1,7 +1,6 @@
-import {ApolloServer} from "apollo-server";
+import {ApolloServer, PubSub} from "apollo-server";
 
 require("dotenv").config();
-import { GraphQLServer, PubSub } from "graphql-yoga";
 import mongoose from "mongoose";
 
 import schema from "../graphql/index";
@@ -32,7 +31,7 @@ mongoose
       useNewUrlParser: true
     }
   )
-  .then(() => console.log("MongoDB connected"))
+  .then(() => console.log("MongoDB connected."))
   .catch(err => console.log(err));
 
 const server = new ApolloServer({
